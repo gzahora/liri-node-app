@@ -2,9 +2,10 @@ require("dotenv").config();
 
 var keys = require("./keys.js");
 
-var fs = require("fs");
-
 var axios = require("axios");
+
+var moment = require('moment');
+moment().format();
 
 var action = process.argv[2];
 
@@ -32,14 +33,13 @@ switch (action) {
             function(response) {
                 // console.log(response.data);
                 for (i = 0; i < response.data.length; i++){
-                    if (response.data.length < 1) {
+                    if (response.data.length === 0) {
                         console.log("This band does not have any shows currently scheduled")                        
                     } else {
                         console.log("----------------------------------------------------------------------------------");
                         console.log("The name of the venue is: " + response.data[i].venue.name);
                         console.log("The location of the venue is: " + response.data[i].venue.city + ", " + response.data[i].venue.country);
-                        console.log("The concert date is: " + response.data[i].datetime);
-                        console.log("----------------------------------------------------------------------------------");
+                        console.log("The concert date is: " + moment(response.data[i].datetime).format('L'));
                     };
             }   
             });
