@@ -7,11 +7,24 @@ var fs = require("fs");
 var axios = require("axios");
 
 var action = process.argv[2];
-var artist = process.argv[3];
+
+var args = process.argv;
+
+
+// Build your address as an array or string
+var artist = [];
+
+
+// Then use the geocoder object to search the address
+for (var i = 3; i < args.length; i++){
+  artist.push(args[i])
+  var artistFull = artist.join(" ");
+};
+
 
 switch (action) {
     case "concert-this":
-        var queryURL = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
+        var queryURL = "https://rest.bandsintown.com/artists/" + artistFull + "/events?app_id=codingbootcamp";
         
         console.log(queryURL);
 
@@ -19,9 +32,15 @@ switch (action) {
             function(response) {
                 // console.log(response.data);
                 for (i = 0; i < response.data.length; i++){
-                console.log("The name of the venue is: " + response.data[i].venue.name);
-                console.log("The location of the venue is: " + response.data[i].venue.city + ", " + response.data[i].venue.country);
-                console.log("The concert date is: " + response.data[i].datetime);
+                    if (response.data.length < 1) {
+                        console.log("This band does not have any shows currently scheduled")                        
+                    } else {
+                        console.log("----------------------------------------------------------------------------------");
+                        console.log("The name of the venue is: " + response.data[i].venue.name);
+                        console.log("The location of the venue is: " + response.data[i].venue.city + ", " + response.data[i].venue.country);
+                        console.log("The concert date is: " + response.data[i].datetime);
+                        console.log("----------------------------------------------------------------------------------");
+                    };
             }   
             });
         break;
