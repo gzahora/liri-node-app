@@ -2,6 +2,10 @@ require("dotenv").config();
 
 var keys = require("./keys.js");
 
+var Spotify = require('node-spotify-api');
+
+var spotify = new Spotify(keys.spotify);
+
 var axios = require("axios");
 
 var moment = require('moment');
@@ -11,24 +15,23 @@ var action = process.argv[2];
 
 var args = process.argv;
 
-
-// Build your address as an array or string
-var artist = [];
+var artists = function(artist){
+    return artist.name;
+};
 
 
 // Then use the geocoder object to search the address
+var input = [];
 for (var i = 3; i < args.length; i++){
-  artist.push(args[i])
-  var artistFull = artist.join(" ");
+  input.push(args[i])
+  var inputFull = input.join(" ");
 };
 
 
 switch (action) {
     case "concert-this":
-        var queryURL = "https://rest.bandsintown.com/artists/" + artistFull + "/events?app_id=codingbootcamp";
-        
+        var queryURL = "https://rest.bandsintown.com/artists/" + inputFull + "/events?app_id=codingbootcamp";        
         console.log(queryURL);
-
         axios.get(queryURL).then(
             function(response) {
                 // console.log(response.data);
@@ -45,6 +48,19 @@ switch (action) {
             });
         break;
     case "spotify-this-song":
+            spotify.search({ type: 'track', query: inputFull }, function(err, data) {
+                console.log(data.tracks.items[0]);
+                if (err) {
+                  return console.log('Error occurred: ' + err);
+                }
+                for (i = 0; i < data.tracks.items.length; i++){
+                    console.log("----------------------------------------------------------------------------------");
+                    console.log("The artist(s) is/are " + data.tracks.items[i].artists.map(artists));
+                    console.log("The song is called " + data.tracks.items[i].name);
+                    console.log("The album is called " + data.tracks.items[i].album.name);
+                    console.log("Here is a link to preview the song: " + data.tracks.items[i].preview_url);    
+                }
+              });
         break;
     case "movie-this":
         break;
