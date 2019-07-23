@@ -1,3 +1,10 @@
+// Outstanding issues/questions -----------------------------------------------------------------------------------------------
+// 1) figure out how to recognize a null answer for the case "concert this". e.g. foster the people
+// 2) figure out why we needed to do the .map for the spotify artist names
+// 3) make spotify default to "The Sign" by "Ace of Bass" if no song is provided
+// 4) make OMDB default to "Mr. Nobody" if no movie is provided
+
+//-----------------------------------------------------------------------------------------------------------------------------
 require("dotenv").config();
 
 var keys = require("./keys.js");
@@ -63,6 +70,41 @@ switch (action) {
               });
         break;
     case "movie-this":
+        var queryUrl = "http://www.omdbapi.com/?t=" + inputFull + "&y=&plot=short&apikey=trilogy";
+        console.log(queryUrl);
+        axios.get(queryUrl).then(
+            function(response) {
+                //console.log(response.data);
+                console.log("----------------------------------------------------------------------------------")
+                console.log("The movie title is " + response.data.Title);
+                console.log("The movie was released in " + response.data.Year);
+                console.log("The IMDB rating is " + response.data.imdbRating);
+                console.log("The Rotten Tomatoes rating is " + response.data.Ratings[1].Value);
+                console.log("The movie was produced in " + response.data.Country);
+                console.log("The movie's language is " + response.data.Language);
+                console.log("The movie's plot is: " + response.data.Plot);
+                console.log("The movie starred "+ response.data.Actors); 
+            })
+            .catch(function(error) {
+                if (error.response) {
+                // The request was made and the server responded with a status code
+                // that falls out of the range of 2xx
+                console.log("---------------Data---------------");
+                console.log(error.response.data);
+                console.log("---------------Status---------------");
+                console.log(error.response.status);
+                console.log("---------------Status---------------");
+                console.log(error.response.headers);
+                } else if (error.request) {
+                // The request was made but no response was received
+                // `error.request` is an object that comes back with details pertaining to the error that occurred.
+                console.log(error.request);
+                } else {
+                // Something happened in setting up the request that triggered an Error
+                console.log("Error", error.message);
+                }
+                console.log(error.config);
+            });       
         break;
     case "do-what-it-says":
         break;
