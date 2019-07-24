@@ -33,11 +33,11 @@ Watch the video here:
     
     Output: The system will display a list of all events and locations where the artist or band will perform.
 
-    **note** no symbols need to be used when typing the name of the artist/band.
-        e.g. 
-        1) CORRECT: young the giant
-            2) INCORRECT: "young the giant" 
-            3) INCORRECT: <young the giant>
+    **NOTE** no extra symbols are needed when typing the name of the artist/band.
+    * e.g. 
+        1. CORRECT: young the giant
+            2. INCORRECT: "young the giant" 
+            3. INCORRECT: <young the giant>
 
     **Example 2**: Run the `spotify-this-song` command
     
@@ -45,11 +45,11 @@ Watch the video here:
     
     Output: The system will display a list of information associated with the song. It can result in multiple records by different artists and on different albums if you aren't specific enough
 
-    **note** no symbols need to be used when typing the name of the song.
-        e.g. 
-        1) CORRECT: apartment -or - apartment young the giant
-            2) INCORRECT: "apartment" -or- "apartment young the giant"
-            3) INCORRECT: <apartment> -or- <apartment young the giant>
+    **NOTE** no extra symbols are needed when typing the name of the song.
+    * e.g. 
+        1. CORRECT: apartment -or - apartment young the giant
+            2. INCORRECT: "apartment" -or- "apartment young the giant"
+            3. INCORRECT: <apartment> -or- <apartment young the giant>
 
 
     **Example 3**: Run the `movie-this` command
@@ -58,11 +58,11 @@ Watch the video here:
     
     Output: The system will display information associated with the movie.
 
-    **note** no symbols need to be used when typing the name of the movie.
-        e.g. 
-        1) CORRECT: the prestige
-            2) INCORRECT: "the prestige" 
-            3) INCORRECT: <the prestige>
+    **NOTE** no extra symbols are needed when typing the name of the movie.
+    * e.g. 
+        1. CORRECT: the prestige
+            2. INCORRECT: "the prestige" 
+            3. INCORRECT: <the prestige>
 
 
     **Example 4**: Run the `do-what-it-says` command
