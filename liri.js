@@ -1,9 +1,5 @@
 // Outstanding issues/questions -----------------------------------------------------------------------------------------------
-// 1) figure out why we needed to do the .map for the spotify artist names
-// 2) make spotify default to "The Sign" by "Ace of Bass" if no song is provided
-// 3) make OMDB default to "Mr. Nobody" if no movie is provided
-// 4) figure out what the fourth case "do-what-it-says" means
-
+// 1) figure out what the fourth case "do-what-it-says" mean
 //-----------------------------------------------------------------------------------------------------------------------------
 require("dotenv").config();
 
@@ -34,6 +30,8 @@ for (var i = 3; i < args.length; i++){
   var inputFull = input.join(" ");
 };
 
+var songLimit = 10;
+
 
 switch (action) {
     case "concert-this":
@@ -55,8 +53,15 @@ switch (action) {
             });
         break;
     case "spotify-this-song":
-            spotify.search({ type: 'track', query: inputFull }, function(err, data) {
-                console.log(data.tracks.items[0]);
+            if (input.length === 0){
+                input = "The Sign Ace of Base";
+                inputFull = input;
+                songLimit = 1; 
+            };
+            // console.log(input);
+            // console.log(inputFull);
+            spotify.search({ type: 'track', query: inputFull, limit: songLimit }, function(err, data) {
+                console.log(inputFull);
                 if (err) {
                   return console.log('Error occurred: ' + err);
                 }
@@ -71,6 +76,10 @@ switch (action) {
               });
         break;
     case "movie-this":
+        if (input.length === 0){
+            input = "Mr. Nobody";
+            inputFull = input; 
+        };
         var queryUrl = "http://www.omdbapi.com/?t=" + inputFull + "&y=&plot=short&apikey=trilogy";
         console.log(queryUrl);
         axios.get(queryUrl).then(
