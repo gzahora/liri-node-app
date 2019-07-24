@@ -7,7 +7,7 @@
 - - -
 
 ## Description
-LIRI is a Language Interpretation and Recognition Interface (similar to Apple's Siri). LIRI is a command line node app that takes in parameters and returns data from available databases. The user can use the below commands to find the information they are looknig for. 
+LIRI is a Language Interpretation and Recognition Interface (similar to Apple's SIRI). LIRI is a command line node app that takes in parameters and returns data from available databases. The user can use the below commands to find the information they are looknig for. 
 
 The `Commands` are:
    * `concert-this`
@@ -36,8 +36,8 @@ Watch the video here:
     **NOTE** no extra symbols are needed when typing the name of the artist/band.
     * e.g. 
         1. CORRECT: young the giant
-            2. INCORRECT: "young the giant" 
-            3. INCORRECT: <young the giant>
+        2. INCORRECT: "young the giant" 
+        3. INCORRECT: < young the giant >
 
     **Example 2**: Run the `spotify-this-song` command
     
@@ -48,8 +48,8 @@ Watch the video here:
     **NOTE** no extra symbols are needed when typing the name of the song.
     * e.g. 
         1. CORRECT: apartment -or - apartment young the giant
-            2. INCORRECT: "apartment" -or- "apartment young the giant"
-            3. INCORRECT: <apartment> -or- <apartment young the giant>
+        2. INCORRECT: "apartment" -or- "apartment young the giant"
+        3. INCORRECT: < apartment > -or- < apartment young the giant >
 
 
     **Example 3**: Run the `movie-this` command
@@ -61,8 +61,8 @@ Watch the video here:
     **NOTE** no extra symbols are needed when typing the name of the movie.
     * e.g. 
         1. CORRECT: the prestige
-            2. INCORRECT: "the prestige" 
-            3. INCORRECT: <the prestige>
+        2. INCORRECT: "the prestige" 
+        3. INCORRECT: < the prestige >
 
 
     **Example 4**: Run the `do-what-it-says` command
