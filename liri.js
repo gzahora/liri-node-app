@@ -45,9 +45,9 @@ function concertThis (){
                 for (i = 0; i < response.data.length; i++){
                     console.log("----------------------------------------------------------------------------------");
                     console.log(i);
-                    console.log("The name of the venue is: " + response.data[i].venue.name);
-                    console.log("The location of the venue is: " + response.data[i].venue.city + ", " + response.data[i].venue.country);
-                    console.log("The concert date is: " + moment(response.data[i].datetime).format('L'));
+                    console.log("Venue Name: "+ response.data[i].venue.name);
+                    console.log("Venue Location: " + response.data[i].venue.city + ", " + response.data[i].venue.country);
+                    console.log("Date of Concert: " + moment(response.data[i].datetime).format('L'));
                 };
             }   
         });
@@ -70,10 +70,10 @@ function spotifyThis (){
         for (i = 0; i < data.tracks.items.length; i++){
             console.log("----------------------------------------------------------------------------------");
             console.log(i);
-            console.log("The artist(s) is/are " + data.tracks.items[i].artists.map(artists));
-            console.log("The song is called " + data.tracks.items[i].name);
-            console.log("The album is called " + data.tracks.items[i].album.name);
-            console.log("Here is a link to preview the song: " + data.tracks.items[i].preview_url);    
+            console.log("Artist(s): " + data.tracks.items[i].artists.map(artists));
+            console.log("Song: " + data.tracks.items[i].name);
+            console.log("Album: " + data.tracks.items[i].album.name);
+            console.log("Preview Link: " + data.tracks.items[i].preview_url);    
         }
         });
     };
@@ -90,14 +90,14 @@ function movieThis () {
         function(response) {
             //console.log(response.data);
             console.log("----------------------------------------------------------------------------------")
-            console.log("The movie title is " + response.data.Title);
-            console.log("The movie was released in " + response.data.Year);
-            console.log("The IMDB rating is " + response.data.imdbRating);
-            console.log("The Rotten Tomatoes rating is " + response.data.Ratings[1].Value);
-            console.log("The movie was produced in " + response.data.Country);
-            console.log("The movie's language is " + response.data.Language);
-            console.log("The movie's plot is: " + response.data.Plot);
-            console.log("The movie starred "+ response.data.Actors); 
+            console.log("Title: " + response.data.Title);
+            console.log("Release Year: " + response.data.Year);
+            console.log("IMDB Rating: " + response.data.imdbRating);
+            console.log("Rotten Tomatoes Rating: " + response.data.Ratings[1].Value);
+            console.log("Country of Production: " + response.data.Country);
+            console.log("Language(s): " + response.data.Language);
+            console.log("Plot: " + response.data.Plot);
+            console.log("Actors: "+ response.data.Actors); 
         })
         .catch(function(error) {
             if (error.response) {

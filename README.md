@@ -19,7 +19,7 @@ The `Commands` are:
 
 ### **Video Guide**
 
-Watch the video here: 
+Watch the video here: https://drive.google.com/file/d/1U8GoKvT5iZDGjNovmTz_JtB5raJmYc-K/view
 
 ### **Instructions**
 
