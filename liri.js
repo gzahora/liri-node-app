@@ -1,8 +1,8 @@
 // Outstanding issues/questions -----------------------------------------------------------------------------------------------
-// 1) figure out how to recognize a null answer for the case "concert this". e.g. foster the people
-// 2) figure out why we needed to do the .map for the spotify artist names
-// 3) make spotify default to "The Sign" by "Ace of Bass" if no song is provided
-// 4) make OMDB default to "Mr. Nobody" if no movie is provided
+// 1) figure out why we needed to do the .map for the spotify artist names
+// 2) make spotify default to "The Sign" by "Ace of Bass" if no song is provided
+// 3) make OMDB default to "Mr. Nobody" if no movie is provided
+// 4) figure out what the fourth case "do-what-it-says" means
 
 //-----------------------------------------------------------------------------------------------------------------------------
 require("dotenv").config();
@@ -41,17 +41,17 @@ switch (action) {
         console.log(queryURL);
         axios.get(queryURL).then(
             function(response) {
-                // console.log(response.data);
-                for (i = 0; i < response.data.length; i++){
-                    if (response.data.length === 0) {
-                        console.log("This band does not have any shows currently scheduled")                        
-                    } else {
+                if (response.data.length === 0) {
+                    console.log("This band does not have any shows currently scheduled")
+                } else {
+                    for (i = 0; i < response.data.length; i++){
                         console.log("----------------------------------------------------------------------------------");
+                        console.log(i);
                         console.log("The name of the venue is: " + response.data[i].venue.name);
                         console.log("The location of the venue is: " + response.data[i].venue.city + ", " + response.data[i].venue.country);
                         console.log("The concert date is: " + moment(response.data[i].datetime).format('L'));
                     };
-            }   
+                }   
             });
         break;
     case "spotify-this-song":
@@ -62,6 +62,7 @@ switch (action) {
                 }
                 for (i = 0; i < data.tracks.items.length; i++){
                     console.log("----------------------------------------------------------------------------------");
+                    console.log(i);
                     console.log("The artist(s) is/are " + data.tracks.items[i].artists.map(artists));
                     console.log("The song is called " + data.tracks.items[i].name);
                     console.log("The album is called " + data.tracks.items[i].album.name);
